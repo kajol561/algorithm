@@ -3,9 +3,9 @@
 using namespace std; 
   
 /* Function to sort an array using insertion sort*/
-void insertionSort(int arr[], int n)  
+int insertionSort(int arr[], int n)  
 {  
-    int i, key, j;  
+    int i, key, j, comps = -1;  
     for (i = 1; i < n; i++) 
     {  
         key = arr[i];  
@@ -18,9 +18,12 @@ void insertionSort(int arr[], int n) 
         {  
             arr[j + 1] = arr[j];  
             j = j - 1;  
+            comps++;
         }  
+        comps++;
         arr[j + 1] = key;  
-    }  
+    } 
+    return comps; 
 }  
   
 // A utility function to print an array of size n  
@@ -38,8 +41,9 @@ int main() 
     int arr[] = { 12, 11, 13, 5, 6 };  
     int n = sizeof(arr) / sizeof(arr[0]);  
   
-    insertionSort(arr, n);  
+    int comps = insertionSort(arr, n);  
     printArray(arr, n);  
+    cout << "Total # of comparisons: " << comps << endl;
   
     return 0;  
 }  
